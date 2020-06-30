@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA575D8724AAD2C600BFEDC8 /* SymbolStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */; };
+		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
+		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
+		BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
+		BA68563D24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
+		BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */; };
+		BAD5CED624AAFD53001B2AFD /* RequestServicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */; };
 		BADA456824A7F9A100B4E8E8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA456724A7F9A100B4E8E8 /* Tests_iOS.swift */; };
 		BADA457324A7F9A100B4E8E8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA457224A7F9A100B4E8E8 /* Tests_macOS.swift */; };
 		BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */; };
 		BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */; };
-		BADA457724A7F9A100B4E8E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA454D24A7F9A000B4E8E8 /* ContentView.swift */; };
-		BADA457824A7F9A100B4E8E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA454D24A7F9A000B4E8E8 /* ContentView.swift */; };
 		BADA457924A7F9A100B4E8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */; };
 		BADA457A24A7F9A100B4E8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */; };
+		BADA458B24A7FA2A00B4E8E8 /* FinnhubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA458A24A7FA2A00B4E8E8 /* FinnhubService.swift */; };
+		BADA458C24A7FA2A00B4E8E8 /* FinnhubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA458A24A7FA2A00B4E8E8 /* FinnhubService.swift */; };
+		BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459124A810D500B4E8E8 /* SymbolPicker.swift */; };
+		BADA459324A810D500B4E8E8 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459124A810D500B4E8E8 /* SymbolPicker.swift */; };
+		BADA459B24A817C100B4E8E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459A24A817C100B4E8E8 /* SearchBar.swift */; };
+		BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459A24A817C100B4E8E8 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolStore.swift; sourceTree = "<group>"; };
+		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServicer.swift; sourceTree = "<group>"; };
 		BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapierApp.swift; sourceTree = "<group>"; };
-		BADA454D24A7F9A000B4E8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BADA455324A7F9A100B4E8E8 /* Papier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Papier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BADA455624A7F9A100B4E8E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +63,9 @@
 		BADA456E24A7F9A100B4E8E8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BADA457224A7F9A100B4E8E8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		BADA457424A7F9A100B4E8E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BADA458A24A7FA2A00B4E8E8 /* FinnhubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinnhubService.swift; sourceTree = "<group>"; };
+		BADA459124A810D500B4E8E8 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
+		BADA459A24A817C100B4E8E8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +100,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA575D8524AAD2B200BFEDC8 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		BA68563A24AAC8C9006FF34C /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				BA68563724AAC84E006FF34C /* Keys.plist */,
+				BA68563B24AAC8DB006FF34C /* Keys.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
 		BADA454624A7F9A000B4E8E8 = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +132,11 @@
 		BADA454B24A7F9A000B4E8E8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BA575D8524AAD2B200BFEDC8 /* Stores */,
+				BA68563A24AAC8C9006FF34C /* Keys */,
+				BADA458D24A8108800B4E8E8 /* Views */,
+				BADA458924A7FA1400B4E8E8 /* Networking */,
 				BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */,
-				BADA454D24A7F9A000B4E8E8 /* ContentView.swift */,
 				BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -149,6 +186,24 @@
 				BADA457424A7F9A100B4E8E8 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		BADA458924A7FA1400B4E8E8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BADA458A24A7FA2A00B4E8E8 /* FinnhubService.swift */,
+				BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BADA458D24A8108800B4E8E8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BADA459124A810D500B4E8E8 /* SymbolPicker.swift */,
+				BADA459A24A817C100B4E8E8 /* SearchBar.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA68563824AAC84E006FF34C /* Keys.plist in Resources */,
 				BADA457924A7F9A100B4E8E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA68563924AAC84E006FF34C /* Keys.plist in Resources */,
 				BADA457A24A7F9A100B4E8E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,8 +365,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BADA457724A7F9A100B4E8E8 /* ContentView.swift in Sources */,
+				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
+				BA575D8724AAD2C600BFEDC8 /* SymbolStore.swift in Sources */,
+				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
+				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
+				BADA458B24A7FA2A00B4E8E8 /* FinnhubService.swift in Sources */,
 				BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
+				BADA459B24A817C100B4E8E8 /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,8 +379,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BADA457824A7F9A100B4E8E8 /* ContentView.swift in Sources */,
+				BA68563D24AAC8DB006FF34C /* Keys.swift in Sources */,
+				BADA459324A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
+				BADA458C24A7FA2A00B4E8E8 /* FinnhubService.swift in Sources */,
+				BAD5CED624AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
+				BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
