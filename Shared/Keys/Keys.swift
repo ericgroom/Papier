@@ -8,10 +8,11 @@
 import Foundation
 
 struct Keys: Codable {
-    let finnhub: Finnhub
- 
-    struct Finnhub: Codable {
-        let key: String
+    let iexcloud: IEXCloud
+    
+    struct IEXCloud: Codable {
+        let sandbox: String
+        let publishable: String
     }
 }
 

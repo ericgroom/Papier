@@ -13,12 +13,16 @@ struct RequestServicer {
         URLSession.shared.dataTaskPublisher(for: request)
     }
     
-    func fetch<T: Decodable>(request: URLRequest, as type: T.Type) -> AnyPublisher<T, NetworkError> {
+    func fetch<T: Decodable>(request: Request<T>) -> AnyPublisher<T, NetworkError> {
         let decoder = JSONDecoder()
         
-        return service(request: request)
+        return service(request: request.urlRequest)
             .mapError { NetworkError.urlError($0) }
             .map(\.data)
+            .breakpoint(receiveOutput: { data -> Bool in
+                print(String(data: data, encoding: .utf8))
+                return true
+            })
             .decode(type: T.self, decoder: decoder)
             .mapError({ error in
                 switch error {

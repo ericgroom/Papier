@@ -9,43 +9,40 @@ import SwiftUI
 
 struct SymbolPicker: View {
     @EnvironmentObject var symbolStore: SymbolStore
-    @Binding public var selection: SymbolSummary?
+    @Binding public var selection: SearchResult?
     @Binding public var showSelf: Bool
-    @State private var searchText: String = ""
-
+    @StateObject private var viewModel = SymbolPickerViewModel()
+    
     var body: some View {
-        VStack {
-            SearchBar(text: $searchText)
+        return VStack {
+            SearchBar(text: viewModel.searchTextBinding)
             List {
-                ForEach(filteredSymbols) { symbol in
+                ForEach(viewModel.searchResults) { symbol in
                     Button(action: {
                         onSelected(symbol)
                     }, label: {
-                        Text(symbol.displaySymbol)
+                        Text(symbol.symbol)
                     })
                 }
+            }.onAppear {
+                viewModel.symbolStore = symbolStore
             }
         }
     }
     
-    var filteredSymbols: [SymbolSummary] {
-        guard searchText.count >= 2 else { return [] }
-        let query = searchText.lowercased()
-        
-        return symbolStore.allSymbols.filter { symbol in
-            symbol.displaySymbol.lowercased().contains(query)
-                || symbol.description.lowercased().contains(query)
-        }
+    init(selection: Binding<SearchResult?>, showSelf: Binding<Bool>) {
+        self._selection = selection
+        self._showSelf = showSelf
     }
     
-    func onSelected(_ item: SymbolSummary) {
+    func onSelected(_ item: SearchResult) {
         selection = item
         showSelf = false
     }
 }
 
 struct SymbolPicker_Previews: PreviewProvider {
-    @State private static var selection: SymbolSummary?
+    @State private static var selection: SearchResult?
     @State private static var showDetail: Bool = true
     
     static var previews: some View {
