@@ -14,7 +14,7 @@ struct SymbolPicker: View {
     
     var body: some View {
         return VStack {
-            SearchBar(text: viewModel.searchTextBinding)
+            SearchBar(text: viewModel.binding(for: \.searchText))
             List {
                 ForEach(viewModel.searchResults) { symbol in
                     Button(action: {

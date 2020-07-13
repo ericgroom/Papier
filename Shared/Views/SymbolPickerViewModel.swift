@@ -14,8 +14,8 @@ class SymbolPickerViewModel: ObservableObject {
     @Published var searchResults: [SearchResult] = []
     let symbolStore: SymbolStoring
     
-    var searchTextBinding: Binding<String> {
-        Binding(get: { self.searchText }, set: { self.searchText = $0 })
+    func binding<T>(for keyPath: ReferenceWritableKeyPath<SymbolPickerViewModel, T>) -> Binding<T> {
+        Binding(get: { self[keyPath: keyPath] }, set: { self[keyPath: keyPath] = $0 })
     }
     
     var bag = Set<AnyCancellable>()
