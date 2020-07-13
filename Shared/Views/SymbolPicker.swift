@@ -20,7 +20,11 @@ struct SymbolPicker: View {
                     Button(action: {
                         onSelected(symbol)
                     }, label: {
-                        Text(symbol.symbol)
+                        VStack(alignment: .leading) {
+                            Text(symbol.symbol)
+                            Text(symbol.securityName)
+                                .font(.footnote)
+                        }
                     })
                 }
             }
