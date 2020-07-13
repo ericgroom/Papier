@@ -24,34 +24,20 @@ class SymbolStore: ObservableObject, SymbolStoring {
     
     var searchResults$: Published<SearchResultsCache>.Publisher { $searchResults }
     
-    private let iex: IEXCloudServicing
-    private let requestServicer: RequestServicing
+    private let searchService: SymbolSearchServicing
     
     private var bag = Set<AnyCancellable>()
     
-    public init(iex: IEXCloudServicing, requestServicer: RequestServicing) {
-        self.iex = iex
-        self.requestServicer = requestServicer
+    public init(searchService: SymbolSearchServicing) {
+        self.searchService = searchService
     }
     
     func performSearch(_ query: SearchQuery) {
         guard searchResults[query] == nil else { return }
         
-        let result = iex.searchSymbols(matching: query)
-        guard let request = try? result.get() else {
-            fatalError("\(result)")
-        }
-        
-        RequestServicer()
-            .fetch(request: request)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    print("done")
-                case .failure(let error):
-                    fatalError("\(error.localizedDescription)")
-                }
-            }, receiveValue: { [weak self] (summaries: [SearchResult]) in
+        searchService.searchSymbols(matching: query)
+            .assertNoFailure()
+            .sink(receiveValue: { [weak self] (summaries: [SearchResult]) in
                 self?.searchResults[query] = summaries
             })
             .store(in: &bag)

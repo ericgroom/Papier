@@ -7,11 +7,13 @@
 
 import Foundation
 
-protocol IEXCloudServicing {
+protocol IEXCloudRequestProducing {
     func searchSymbols(matching query: String) -> Result<Request<[SearchResult]>, RequestConstructionError>
 }
 
-class IEXCloudService: IEXCloudServicing {
+class IEXCloudRequestFactory: IEXCloudRequestProducing {
+    // MARK: - Common
+    
     typealias ApiKey = String
 
     private let keys: Keys.IEXCloud
@@ -51,10 +53,13 @@ class IEXCloudService: IEXCloudServicing {
         components.queryItems = [authParam]
         return components
     }
-}
-
-extension IEXCloudService {
-    func searchSymbols(matching query: String) -> Result<Request<[SearchResult]>, RequestConstructionError> {
+    
+    // MARK: - Search
+    
+    typealias SearchQuery = String
+    private var searchCache = [SearchQuery: [SearchResult]]()
+    
+    func searchSymbols(matching query: SearchQuery) -> Result<Request<[SearchResult]>, RequestConstructionError> {
         guard let endpoint = "/search/\(query)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
             return .failure(.unableToPercentEncodeString)
         }
