@@ -7,11 +7,16 @@
 
 import Foundation
 
-class Environment {
-    let symbolStore: SymbolStore
-    let requestServicer: RequestServicer
+protocol Environment {
+    var symbolStore: SymbolStoring { get }
+    var requestServicer: RequestServicing { get }
+}
+
+class RealEnvironment: Environment {
+    let symbolStore: SymbolStoring
+    let requestServicer: RequestServicing
     
-    static let shared: Environment = Environment()
+    static let shared: Environment = RealEnvironment()
     
     init() {
         // something has gone seriously wrong if this fails outside of development

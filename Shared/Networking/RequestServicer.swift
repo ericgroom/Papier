@@ -8,7 +8,12 @@
 import Foundation
 import Combine
 
-struct RequestServicer {
+protocol RequestServicing {
+    func service(request: URLRequest) -> URLSession.DataTaskPublisher
+    func fetch<T: Decodable>(request: Request<T>) -> AnyPublisher<T, NetworkError>
+}
+
+struct RequestServicer: RequestServicing {
     func service(request: URLRequest) -> URLSession.DataTaskPublisher {
         URLSession.shared.dataTaskPublisher(for: request)
     }

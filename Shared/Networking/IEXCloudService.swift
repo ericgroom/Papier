@@ -7,34 +7,11 @@
 
 import Foundation
 
-enum IEXEnvironment {
-    case normal
-    case sandbox
+protocol IEXCloudServicing {
+    func searchSymbols(matching query: String) -> Result<Request<[SearchResult]>, RequestConstructionError>
 }
 
-extension IEXEnvironment {
-    func key(from keys: Keys.IEXCloud) -> String {
-        switch self {
-        case .normal:
-            return keys.publishable
-        case .sandbox:
-            return keys.sandbox
-        }
-    }
-}
-
-extension IEXEnvironment {
-    var hostname: String {
-        switch self {
-        case .normal:
-            return "cloud.iexapis.com"
-        case .sandbox:
-            return "sandbox.iexapis.com"
-        }
-    }
-}
-
-class IEXCloudService {
+class IEXCloudService: IEXCloudServicing {
     typealias ApiKey = String
 
     private let keys: Keys.IEXCloud
@@ -89,6 +66,33 @@ extension IEXCloudService {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         return .success(Request(request))
+    }
+}
+
+enum IEXEnvironment {
+    case normal
+    case sandbox
+}
+
+extension IEXEnvironment {
+    func key(from keys: Keys.IEXCloud) -> String {
+        switch self {
+        case .normal:
+            return keys.publishable
+        case .sandbox:
+            return keys.sandbox
+        }
+    }
+}
+
+extension IEXEnvironment {
+    var hostname: String {
+        switch self {
+        case .normal:
+            return "cloud.iexapis.com"
+        case .sandbox:
+            return "sandbox.iexapis.com"
+        }
     }
 }
 

@@ -12,7 +12,7 @@ import Combine
 class SymbolPickerViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchResults: [SearchResult] = []
-    let symbolStore: SymbolStore
+    let symbolStore: SymbolStoring
     
     var searchTextBinding: Binding<String> {
         Binding(get: { self.searchText }, set: { self.searchText = $0 })
@@ -20,7 +20,7 @@ class SymbolPickerViewModel: ObservableObject {
     
     var bag = Set<AnyCancellable>()
         
-    init(environment: Environment = .shared) {
+    init(environment: Environment = RealEnvironment.shared) {
         self.symbolStore = environment.symbolStore
         
         $searchText
@@ -33,7 +33,7 @@ class SymbolPickerViewModel: ObservableObject {
             }
             .store(in: &bag)
         
-        symbolStore.$searchResults
+        symbolStore.searchResults$
             .combineLatest($searchText)
             .map { (resultsCache, query) in resultsCache[query, default: []] }
             .receive(on: RunLoop.main)
