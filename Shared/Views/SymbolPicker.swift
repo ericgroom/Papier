@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SymbolPicker: View {
-    @EnvironmentObject var symbolStore: SymbolStore
     @Binding public var selection: SearchResult?
     @Binding public var showSelf: Bool
     @StateObject private var viewModel = SymbolPickerViewModel()
@@ -24,15 +23,8 @@ struct SymbolPicker: View {
                         Text(symbol.symbol)
                     })
                 }
-            }.onAppear {
-                viewModel.symbolStore = symbolStore
             }
         }
-    }
-    
-    init(selection: Binding<SearchResult?>, showSelf: Binding<Bool>) {
-        self._selection = selection
-        self._showSelf = showSelf
     }
     
     func onSelected(_ item: SearchResult) {

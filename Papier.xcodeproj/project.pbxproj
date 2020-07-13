@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA024B5C24BC13BE004B6320 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024B5B24BC13BE004B6320 /* Environment.swift */; };
+		BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024B5B24BC13BE004B6320 /* Environment.swift */; };
 		BA575D8724AAD2C600BFEDC8 /* SymbolStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */; };
 		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
@@ -50,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA024B5B24BC13BE004B6320 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolStore.swift; sourceTree = "<group>"; };
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 				BA68563A24AAC8C9006FF34C /* Keys */,
 				BADA458D24A8108800B4E8E8 /* Views */,
 				BADA458924A7FA1400B4E8E8 /* Networking */,
+				BA024B5B24BC13BE004B6320 /* Environment.swift */,
 				BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */,
 				BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */,
 			);
@@ -380,6 +384,7 @@
 				BAF562BC24BB84C0008E43CC /* SymbolPickerViewModel.swift in Sources */,
 				BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BAA44AF324B8D00E00C82325 /* IEXCloudService.swift in Sources */,
+				BA024B5C24BC13BE004B6320 /* Environment.swift in Sources */,
 				BAF562B924BB7540008E43CC /* Request.swift in Sources */,
 				BADA459B24A817C100B4E8E8 /* SearchBar.swift in Sources */,
 			);
@@ -396,6 +401,7 @@
 				BAD5CED624AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAA44AF424B8D00E00C82325 /* IEXCloudService.swift in Sources */,
 				BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
+				BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */,
 				BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
