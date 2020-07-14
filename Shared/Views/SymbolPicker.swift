@@ -10,13 +10,13 @@ import SwiftUI
 struct SymbolPicker: View {
     @Binding public var selection: SearchResult?
     @Binding public var showSelf: Bool
-    @StateObject private var viewModel = SymbolPickerViewModel()
+    @StateObject private var interactor = RealEnvironment.shared.symbolSearchInteractor()
     
     var body: some View {
         return VStack {
-            SearchBar(text: viewModel.binding(for: \.searchText))
+            SearchBar(text: interactor.binding(for: \.searchText))
             List {
-                ForEach(viewModel.searchResults) { symbol in
+                ForEach(interactor.searchResults) { symbol in
                     Button(action: {
                         onSelected(symbol)
                     }, label: {

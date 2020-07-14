@@ -8,12 +8,12 @@
 import Foundation
 
 protocol Environment {
-    var symbolStore: SymbolStoring { get }
     var requestServicer: RequestServicing { get }
+    
+    func symbolSearchInteractor() -> SymbolSearchInteractor
 }
 
 class RealEnvironment: Environment {
-    let symbolStore: SymbolStoring
     let requestServicer: RequestServicing
     let symbolSearchService: SymbolSearchService
     
@@ -26,6 +26,9 @@ class RealEnvironment: Environment {
         let iex = IEXCloudRequestFactory(keys: keys.iexcloud, enviornment: .sandbox)
         self.requestServicer = RequestServicer()
         self.symbolSearchService = SymbolSearchService(requestServicer: requestServicer, requestFactory: iex)
-        self.symbolStore = SymbolStore(searchService: symbolSearchService)
+    }
+    
+    func symbolSearchInteractor() -> SymbolSearchInteractor {
+        SymbolSearchInteractor(service: self.symbolSearchService)
     }
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BA024B5C24BC13BE004B6320 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024B5B24BC13BE004B6320 /* Environment.swift */; };
 		BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024B5B24BC13BE004B6320 /* Environment.swift */; };
-		BA575D8724AAD2C600BFEDC8 /* SymbolStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */; };
 		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
@@ -34,8 +33,8 @@
 		BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459A24A817C100B4E8E8 /* SearchBar.swift */; };
 		BAF562B924BB7540008E43CC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562B824BB7540008E43CC /* Request.swift */; };
 		BAF562BA24BB7540008E43CC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562B824BB7540008E43CC /* Request.swift */; };
-		BAF562BC24BB84C0008E43CC /* SymbolPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolPickerViewModel.swift */; };
-		BAF562BD24BB84C0008E43CC /* SymbolPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolPickerViewModel.swift */; };
+		BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */; };
+		BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		BA024B5B24BC13BE004B6320 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolStore.swift; sourceTree = "<group>"; };
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		BA6F326824BCBA5D008CD2A3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -80,7 +78,7 @@
 		BADA459124A810D500B4E8E8 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		BADA459A24A817C100B4E8E8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BAF562B824BB7540008E43CC /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		BAF562BB24BB84C0008E43CC /* SymbolPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerViewModel.swift; sourceTree = "<group>"; };
+		BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +113,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA575D8524AAD2B200BFEDC8 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-				BA575D8624AAD2C600BFEDC8 /* SymbolStore.swift */,
-			);
-			path = Stores;
-			sourceTree = "<group>";
-		};
 		BA68563A24AAC8C9006FF34C /* Keys */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +137,6 @@
 		BADA454B24A7F9A000B4E8E8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				BA575D8524AAD2B200BFEDC8 /* Stores */,
 				BA68563A24AAC8C9006FF34C /* Keys */,
 				BADA458D24A8108800B4E8E8 /* Views */,
 				BADA458924A7FA1400B4E8E8 /* Networking */,
@@ -221,7 +210,7 @@
 			children = (
 				BADA459124A810D500B4E8E8 /* SymbolPicker.swift */,
 				BADA459A24A817C100B4E8E8 /* SearchBar.swift */,
-				BAF562BB24BB84C0008E43CC /* SymbolPickerViewModel.swift */,
+				BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -386,11 +375,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
-				BA575D8724AAD2C600BFEDC8 /* SymbolStore.swift in Sources */,
 				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */,
 				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
-				BAF562BC24BB84C0008E43CC /* SymbolPickerViewModel.swift in Sources */,
+				BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
 				BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BA6F326924BCBA5D008CD2A3 /* AppState.swift in Sources */,
 				BAA44AF324B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
@@ -408,7 +396,7 @@
 				BA6F326A24BCBA5D008CD2A3 /* AppState.swift in Sources */,
 				BAF562BA24BB7540008E43CC /* Request.swift in Sources */,
 				BADA459324A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
-				BAF562BD24BB84C0008E43CC /* SymbolPickerViewModel.swift in Sources */,
+				BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
 				BAD5CED624AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAA44AF424B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
 				BA6F326D24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */,
