@@ -12,7 +12,7 @@ import Combine
 class SymbolSearchInteractor: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchResults: [SearchResult] = []
-    let service: SymbolSearchServicing
+    let service: SymbolSearchStoring
     
     func binding<T>(for keyPath: ReferenceWritableKeyPath<SymbolSearchInteractor, T>) -> Binding<T> {
         Binding(get: { self[keyPath: keyPath] }, set: { self[keyPath: keyPath] = $0 })
@@ -20,7 +20,7 @@ class SymbolSearchInteractor: ObservableObject {
     
     var bag = Set<AnyCancellable>()
         
-    init(service: SymbolSearchServicing) {
+    init(service: SymbolSearchStoring) {
         self.service = service
         
         $searchText

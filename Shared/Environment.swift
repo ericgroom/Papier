@@ -15,7 +15,7 @@ protocol Environment {
 
 class RealEnvironment: Environment {
     let requestServicer: RequestServicing
-    let symbolSearchService: SymbolSearchService
+    let symbolSearchService: SymbolSearchStore
     
     static let shared: Environment = RealEnvironment()
     
@@ -25,7 +25,7 @@ class RealEnvironment: Environment {
 
         let iex = IEXCloudRequestFactory(keys: keys.iexcloud, enviornment: .sandbox)
         self.requestServicer = RequestServicer()
-        self.symbolSearchService = SymbolSearchService(requestServicer: requestServicer, requestFactory: iex)
+        self.symbolSearchService = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
     }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor {

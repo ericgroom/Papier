@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-protocol SymbolSearchServicing {
+protocol SymbolSearchStoring {
     typealias SearchQuery = String // TODO: dedup
     func searchSymbols(matching query: SearchQuery) -> AnyPublisher<[SearchResult], ServiceError> // TODO Error
 }
 
-class SymbolSearchService: SymbolSearchServicing {
+class SymbolSearchStore: SymbolSearchStoring {
     let requestServicer: RequestServicing
     let requestFactory: IEXCloudRequestProducing
     

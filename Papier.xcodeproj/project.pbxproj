@@ -15,8 +15,8 @@
 		BA68563D24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
 		BA6F326924BCBA5D008CD2A3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326824BCBA5D008CD2A3 /* AppState.swift */; };
 		BA6F326A24BCBA5D008CD2A3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326824BCBA5D008CD2A3 /* AppState.swift */; };
-		BA6F326C24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326B24BCBC8C008CD2A3 /* SymbolSearchService.swift */; };
-		BA6F326D24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326B24BCBC8C008CD2A3 /* SymbolSearchService.swift */; };
+		BA6F326C24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */; };
+		BA6F326D24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */; };
 		BAA44AF324B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA44AF224B8D00E00C82325 /* IEXCloudRequestFactory.swift */; };
 		BAA44AF424B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA44AF224B8D00E00C82325 /* IEXCloudRequestFactory.swift */; };
 		BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */; };
@@ -59,7 +59,7 @@
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		BA6F326824BCBA5D008CD2A3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		BA6F326B24BCBC8C008CD2A3 /* SymbolSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchService.swift; sourceTree = "<group>"; };
+		BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchStore.swift; sourceTree = "<group>"; };
 		BAA44AF224B8D00E00C82325 /* IEXCloudRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXCloudRequestFactory.swift; sourceTree = "<group>"; };
 		BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServicer.swift; sourceTree = "<group>"; };
 		BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapierApp.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 				BAA44AF224B8D00E00C82325 /* IEXCloudRequestFactory.swift */,
 				BAD5CED424AAFD53001B2AFD /* RequestServicer.swift */,
 				BAF562B824BB7540008E43CC /* Request.swift */,
-				BA6F326B24BCBC8C008CD2A3 /* SymbolSearchService.swift */,
+				BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
-				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */,
+				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
 				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
@@ -399,7 +399,7 @@
 				BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
 				BAD5CED624AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAA44AF424B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
-				BA6F326D24BCBC8C008CD2A3 /* SymbolSearchService.swift in Sources */,
+				BA6F326D24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
 				BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */,
 				BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */,
