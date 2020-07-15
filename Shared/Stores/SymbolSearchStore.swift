@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 protocol SymbolSearchStoring {
-    typealias SearchQuery = String // TODO: dedup
-    func searchSymbols(matching query: SearchQuery) -> AnyPublisher<[SearchResult], ServiceError> // TODO Error
+    typealias SearchQuery = String
+    func searchSymbols(matching query: SearchQuery) -> AnyPublisher<[SearchResult], ServiceError>
 }
 
 class SymbolSearchStore: SymbolSearchStoring {
     let requestServicer: RequestServicing
     let requestFactory: IEXCloudRequestProducing
     
-    private var searchCache: [SearchQuery: [SearchResult]] = [:]
+    private var searchCache: [SearchQuery: [SearchResult]] = [:] // move to a global store?
     
     init(requestServicer: RequestServicing, requestFactory: IEXCloudRequestProducing) {
         self.requestServicer = requestServicer
@@ -32,7 +32,7 @@ class SymbolSearchStore: SymbolSearchStoring {
         }
         
         let constructionResult = requestFactory.searchSymbols(matching: query)
-        let request = fromResult(constructionResult)
+        let request = FromResult(constructionResult)
         
         return request
             .mapError { ServiceError.requestConstruction($0) }
@@ -46,20 +46,4 @@ class SymbolSearchStore: SymbolSearchStoring {
             })
             .eraseToAnyPublisher()
     }
-}
-
-func fromResult<Success, Failure: Error>(_ result: Result<Success, Failure>) -> Future<Success, Failure> {
-    return Future.init { promise in
-        switch result {
-        case .success(let value):
-            promise(.success(value))
-        case .failure(let error):
-            promise(.failure(error))
-        }
-    }
-}
-
-enum ServiceError: Swift.Error {
-    case requestConstruction(RequestConstructionError)
-    case network(NetworkError)
 }

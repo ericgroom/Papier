@@ -17,6 +17,10 @@ class RealEnvironment: Environment {
     let requestServicer: RequestServicing
     let symbolSearchService: SymbolSearchStore
     
+    /**
+     Would like to eventually use SwiftUI environment, but it's not possible to access outside of SwiftUI Views,
+      And you can't even use the value in the initialization of the view
+     */
     static let shared: Environment = RealEnvironment()
     
     init() {

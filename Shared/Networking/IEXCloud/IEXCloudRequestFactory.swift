@@ -43,7 +43,7 @@ class IEXCloudRequestFactory: IEXCloudRequestProducing {
      
      - Parameter endpoint: a string path for the desired endpoint
      */
-    private func baseComponents(to endpoint: String) -> URLComponents {
+    internal func baseComponents(to endpoint: String) -> URLComponents {
         let normalizedEndpointPostfix = endpoint.first == "/" ? String(endpoint.dropFirst()) : endpoint
         
         var components = URLComponents()
@@ -52,25 +52,6 @@ class IEXCloudRequestFactory: IEXCloudRequestProducing {
         components.path = basePath + normalizedEndpointPostfix
         components.queryItems = [authParam]
         return components
-    }
-    
-    // MARK: - Search
-    
-    typealias SearchQuery = String
-    private var searchCache = [SearchQuery: [SearchResult]]()
-    
-    func searchSymbols(matching query: SearchQuery) -> Result<Request<[SearchResult]>, RequestConstructionError> {
-        guard let endpoint = "/search/\(query)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return .failure(.unableToPercentEncodeString)
-        }
-        let components = baseComponents(to: endpoint)
-        guard let url = components.url else {
-            return .failure(.unableToCreateURLFromComponents)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return .success(Request(request))
     }
 }
 
@@ -99,18 +80,6 @@ extension IEXEnvironment {
             return "sandbox.iexapis.com"
         }
     }
-}
-
-struct SearchResult: Codable {
-    let symbol: String
-    let securityName: String
-    let securityType: String
-    let region: String
-    let exchange: String
-}
-
-extension SearchResult: Identifiable {
-    var id: String { symbol }
 }
 
 enum RequestConstructionError: Error {
