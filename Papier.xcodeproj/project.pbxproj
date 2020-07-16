@@ -11,6 +11,10 @@
 		BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024B5B24BC13BE004B6320 /* Environment.swift */; };
 		BA17992D24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17992C24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift */; };
 		BA17992E24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17992C24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift */; };
+		BA17993524BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */; };
+		BA17993624BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */; };
+		BA17993824BFE13200210B00 /* PriceInformationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993724BFE13200210B00 /* PriceInformationStore.swift */; };
+		BA17993924BFE13200210B00 /* PriceInformationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993724BFE13200210B00 /* PriceInformationStore.swift */; };
 		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
@@ -57,6 +61,8 @@
 /* Begin PBXFileReference section */
 		BA024B5B24BC13BE004B6320 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		BA17992C24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IEXCloudRequestFactory+Search.swift"; sourceTree = "<group>"; };
+		BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IEXCloudRequestFactory+Quote.swift"; sourceTree = "<group>"; };
+		BA17993724BFE13200210B00 /* PriceInformationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInformationStore.swift; sourceTree = "<group>"; };
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchStore.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 			children = (
 				BAA44AF224B8D00E00C82325 /* IEXCloudRequestFactory.swift */,
 				BA17992C24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift */,
+				BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */,
 			);
 			path = IEXCloud;
 			sourceTree = "<group>";
@@ -128,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */,
+				BA17993724BFE13200210B00 /* PriceInformationStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -404,11 +412,13 @@
 			files = (
 				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
 				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
+				BA17993524BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */,
 				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
 				BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BAD49F7E24BF6931009B531C /* FromResult.swift in Sources */,
+				BA17993824BFE13200210B00 /* PriceInformationStore.swift in Sources */,
 				BA17992D24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift in Sources */,
 				BAD49F8024BF6999009B531C /* ServiceError.swift in Sources */,
 				BAA44AF324B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
@@ -428,9 +438,11 @@
 				BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
 				BAA44AF424B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
 				BA6F326D24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
+				BA17993624BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */,
 				BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */,
 				BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */,
+				BA17993924BFE13200210B00 /* PriceInformationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +529,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -570,6 +584,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

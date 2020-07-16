@@ -36,10 +36,9 @@ class SymbolSearchStore: SymbolSearchStoring {
         
         return request
             .mapError { ServiceError.requestConstruction($0) }
-            .flatMap { [self] request -> AnyPublisher<[SearchResult], ServiceError> in
+            .flatMap { [self] request in
                 requestServicer.fetch(request: request)
                     .mapError { ServiceError.network($0) }
-                    .eraseToAnyPublisher()
             }
             .handleEvents(receiveOutput: { [weak self] results in
                 self?.searchCache[query] = results

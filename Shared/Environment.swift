@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol Environment {
     var requestServicer: RequestServicing { get }
@@ -15,7 +16,8 @@ protocol Environment {
 
 class RealEnvironment: Environment {
     let requestServicer: RequestServicing
-    let symbolSearchService: SymbolSearchStore
+    let symbolSearchStore: SymbolSearchStore
+    let priceInformationStore: PriceInformationStoring
     
     /**
      Would like to eventually use SwiftUI environment, but it's not possible to access outside of SwiftUI Views,
@@ -29,10 +31,11 @@ class RealEnvironment: Environment {
 
         let iex = IEXCloudRequestFactory(keys: keys.iexcloud, enviornment: .sandbox)
         self.requestServicer = RequestServicer()
-        self.symbolSearchService = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
+        self.symbolSearchStore = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
+        self.priceInformationStore = PriceInformationStore(requestServicer: requestServicer, requestFactory: iex)
     }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor {
-        SymbolSearchInteractor(service: self.symbolSearchService)
+        SymbolSearchInteractor(service: self.symbolSearchStore)
     }
 }
