@@ -15,6 +15,15 @@
 		BA17993624BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */; };
 		BA17993824BFE13200210B00 /* PriceInformationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993724BFE13200210B00 /* PriceInformationStore.swift */; };
 		BA17993924BFE13200210B00 /* PriceInformationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993724BFE13200210B00 /* PriceInformationStore.swift */; };
+		BA17994024BFE54E00210B00 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993F24BFE54E00210B00 /* WatchlistView.swift */; };
+		BA17994124BFE54E00210B00 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17993F24BFE54E00210B00 /* WatchlistView.swift */; };
+		BA17994324BFE5B400210B00 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17994224BFE5B400210B00 /* Interactor.swift */; };
+		BA17994424BFE5B400210B00 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17994224BFE5B400210B00 /* Interactor.swift */; };
+		BA17994624BFE64E00210B00 /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17994524BFE64E00210B00 /* WatchlistInteractor.swift */; };
+		BA17994724BFE64E00210B00 /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17994524BFE64E00210B00 /* WatchlistInteractor.swift */; };
+		BA38ACC924C1FF7B00A47813 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACC824C1FF7B00A47813 /* Formatter.swift */; };
+		BA38ACCB24C1FFB900A47813 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACCA24C1FFB900A47813 /* KeyedDecodingContainer.swift */; };
+		BA38ACCD24C201BD00A47813 /* WatchlistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACCC24C201BD00A47813 /* WatchlistStore.swift */; };
 		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
@@ -63,6 +72,12 @@
 		BA17992C24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IEXCloudRequestFactory+Search.swift"; sourceTree = "<group>"; };
 		BA17993424BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IEXCloudRequestFactory+Quote.swift"; sourceTree = "<group>"; };
 		BA17993724BFE13200210B00 /* PriceInformationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInformationStore.swift; sourceTree = "<group>"; };
+		BA17993F24BFE54E00210B00 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
+		BA17994224BFE5B400210B00 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		BA17994524BFE64E00210B00 /* WatchlistInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistInteractor.swift; sourceTree = "<group>"; };
+		BA38ACC824C1FF7B00A47813 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		BA38ACCA24C1FFB900A47813 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
+		BA38ACCC24C201BD00A47813 /* WatchlistStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistStore.swift; sourceTree = "<group>"; };
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchStore.swift; sourceTree = "<group>"; };
@@ -136,8 +151,18 @@
 			children = (
 				BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */,
 				BA17993724BFE13200210B00 /* PriceInformationStore.swift */,
+				BA38ACCC24C201BD00A47813 /* WatchlistStore.swift */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		BA38ACC724C1FF7000A47813 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BA38ACC824C1FF7B00A47813 /* Formatter.swift */,
+				BA38ACCA24C1FFB900A47813 /* KeyedDecodingContainer.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BA68563A24AAC8C9006FF34C /* Keys */ = {
@@ -175,6 +200,7 @@
 		BADA454B24A7F9A000B4E8E8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BA38ACC724C1FF7000A47813 /* Extensions */,
 				BA17992F24BFD6D700210B00 /* Stores */,
 				BA68563A24AAC8C9006FF34C /* Keys */,
 				BADA458D24A8108800B4E8E8 /* Views */,
@@ -247,6 +273,9 @@
 				BADA459124A810D500B4E8E8 /* SymbolPicker.swift */,
 				BADA459A24A817C100B4E8E8 /* SearchBar.swift */,
 				BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */,
+				BA17993F24BFE54E00210B00 /* WatchlistView.swift */,
+				BA17994524BFE64E00210B00 /* WatchlistInteractor.swift */,
+				BA17994224BFE5B400210B00 /* Interactor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,8 +439,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA38ACCD24C201BD00A47813 /* WatchlistStore.swift in Sources */,
 				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
+				BA38ACC924C1FF7B00A47813 /* Formatter.swift in Sources */,
 				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
+				BA17994624BFE64E00210B00 /* WatchlistInteractor.swift in Sources */,
 				BA17993524BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */,
 				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
@@ -422,7 +454,10 @@
 				BA17992D24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift in Sources */,
 				BAD49F8024BF6999009B531C /* ServiceError.swift in Sources */,
 				BAA44AF324B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
+				BA17994324BFE5B400210B00 /* Interactor.swift in Sources */,
+				BA17994024BFE54E00210B00 /* WatchlistView.swift in Sources */,
 				BA024B5C24BC13BE004B6320 /* Environment.swift in Sources */,
+				BA38ACCB24C1FFB900A47813 /* KeyedDecodingContainer.swift in Sources */,
 				BAF562B924BB7540008E43CC /* Request.swift in Sources */,
 				BADA459B24A817C100B4E8E8 /* SearchBar.swift in Sources */,
 			);
@@ -436,9 +471,12 @@
 				BADA459324A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BA17992E24BFD5CF00210B00 /* IEXCloudRequestFactory+Search.swift in Sources */,
 				BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
+				BA17994124BFE54E00210B00 /* WatchlistView.swift in Sources */,
 				BAA44AF424B8D00E00C82325 /* IEXCloudRequestFactory.swift in Sources */,
 				BA6F326D24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
 				BA17993624BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */,
+				BA17994724BFE64E00210B00 /* WatchlistInteractor.swift in Sources */,
+				BA17994424BFE5B400210B00 /* Interactor.swift in Sources */,
 				BADA457624A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BA024B5D24BC13BE004B6320 /* Environment.swift in Sources */,
 				BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */,

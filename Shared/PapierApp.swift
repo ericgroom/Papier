@@ -26,6 +26,7 @@ struct PapierApp: App {
                         destination: SymbolPicker(selection: $selectedSymbol, showSelf: $showSearch),
                         isActive: $showSearch)
                     Text("Selected: \(selectedSymbol?.symbol ?? "none")")
+                    WatchlistView()
                 }
             }
         }

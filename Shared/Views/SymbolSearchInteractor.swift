@@ -9,14 +9,10 @@ import Foundation
 import SwiftUI
 import Combine
 
-class SymbolSearchInteractor: ObservableObject {
+class SymbolSearchInteractor: Interactor {
     @Published var searchText: String = ""
     @Published var searchResults: [SearchResult] = []
     let service: SymbolSearchStoring
-    
-    func binding<T>(for keyPath: ReferenceWritableKeyPath<SymbolSearchInteractor, T>) -> Binding<T> {
-        Binding(get: { self[keyPath: keyPath] }, set: { self[keyPath: keyPath] = $0 })
-    }
     
     var bag = Set<AnyCancellable>()
         

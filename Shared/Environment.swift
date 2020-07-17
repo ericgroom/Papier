@@ -12,12 +12,14 @@ protocol Environment {
     var requestServicer: RequestServicing { get }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor
+    func watchlistInteractor() -> WatchlistInteractor
 }
 
 class RealEnvironment: Environment {
     let requestServicer: RequestServicing
     let symbolSearchStore: SymbolSearchStore
     let priceInformationStore: PriceInformationStoring
+    let watchlistStore: WatchlistStoring
     
     /**
      Would like to eventually use SwiftUI environment, but it's not possible to access outside of SwiftUI Views,
@@ -33,9 +35,14 @@ class RealEnvironment: Environment {
         self.requestServicer = RequestServicer()
         self.symbolSearchStore = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
         self.priceInformationStore = PriceInformationStore(requestServicer: requestServicer, requestFactory: iex)
+        self.watchlistStore = WatchlistStore()
     }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor {
-        SymbolSearchInteractor(service: self.symbolSearchStore)
+        SymbolSearchInteractor(service: symbolSearchStore)
+    }
+    
+    func watchlistInteractor() -> WatchlistInteractor {
+        WatchlistInteractor(priceInformationStore: priceInformationStore, watchlistStore: watchlistStore)
     }
 }
