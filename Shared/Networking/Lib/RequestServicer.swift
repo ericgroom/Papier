@@ -14,6 +14,8 @@ protocol RequestServicing {
 }
 
 struct RequestServicer: RequestServicing {
+    private var printJSON = true
+    
     func service(request: URLRequest) -> URLSession.DataTaskPublisher {
         URLSession.shared.dataTaskPublisher(for: request)
     }
@@ -24,6 +26,7 @@ struct RequestServicer: RequestServicing {
         return service(request: request.urlRequest)
             .mapError { NetworkError.urlError($0) }
             .map(\.data)
+            .handleEvents(receiveOutput: printJson(from:))
             .decode(type: T.self, decoder: decoder)
             .mapError({ error in
                 switch error {
@@ -36,6 +39,16 @@ struct RequestServicer: RequestServicing {
                 }
             })
             .eraseToAnyPublisher()
+    }
+    
+    private func printJson(from data: Data) {
+        guard
+            printJSON,
+            let str = String(data: data, encoding: .utf8)
+        else {
+            return
+        }
+        print(str)
     }
 }
 
