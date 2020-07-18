@@ -23,12 +23,17 @@ struct PapierApp: App {
                 Form {
                     NavigationLink(
                         "Select Symbol",
-                        destination: SymbolPicker(selection: $selectedSymbol, showSelf: $showSearch),
+                        destination: SymbolPicker(onSelected: onSelection(of:)),
                         isActive: $showSearch)
                     Text("Selected: \(selectedSymbol?.symbol ?? "none")")
                     WatchlistView()
                 }
             }
         }
+    }
+    
+    func onSelection(of searchResult: SearchResult) {
+        selectedSymbol = searchResult
+        showSearch.toggle()
     }
 }

@@ -21,8 +21,16 @@ class PriceInformationStore: PriceInformationStoring {
         self.requestFactory = requestFactory
     }
     
+    private var cache: [Symbol: Quote] = [:]
+    
     func quote(for symbol: Symbol) -> AnyPublisher<Quote, ServiceError> {
-        FromResult(requestFactory.quote(for: symbol))
+        if let previousValue = cache[symbol] {
+            return Just(previousValue)
+                .setFailureType(to: ServiceError.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return FromResult(requestFactory.quote(for: symbol))
             .mapError { ServiceError.requestConstruction($0) }
             .flatMap { [self] request in
                 requestServicer.fetch(request: request)

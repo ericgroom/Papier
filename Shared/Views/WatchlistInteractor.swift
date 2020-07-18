@@ -25,12 +25,26 @@ class WatchlistInteractor: Interactor {
                 symbols.map { priceInformationStore.quote(for: $0) }
             )
         }
+        .print()
         .assertNoFailure()
+        .print()
         .receive(on: RunLoop.main)
-        .sink { quote in
-            self.watched.append(quote)
+        .sink { [weak self] quote in
+            guard let self = self else { return }
+            if let index = self.watched.firstIndex(where: { quote.symbol == $0.symbol }) {
+                self.watched[index] = quote
+            } else {
+                self.watched.append(quote)
+            }
         }
         .store(in: &bag)
     }
+    
+    func watch(symbol: Symbol) {
+        watchlistStore.watch(symbol: symbol)
+            .sink(receiveValue: { _ in
+                
+            })
+            .store(in: &bag)
+    }
 }
-// https://cloud.iexapis.com/stable/stock/aapl/batch?types=quote,news,chart&range=1m&last=10

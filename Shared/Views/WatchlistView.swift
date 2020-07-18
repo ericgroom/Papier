@@ -26,7 +26,13 @@ struct WatchlistView: View {
                         .bold()
                 }
             }
-        }
+        }.navigationBarItems(
+            trailing: AddSymbolButton(onSelected: onSymbolSelected)
+        )
+    }
+    
+    func onSymbolSelected(_ symbol: SearchResult) {
+        interactor.watch(symbol: symbol.symbol)
     }
     
     func format(decimal: Decimal) -> String {

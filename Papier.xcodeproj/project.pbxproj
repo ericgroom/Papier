@@ -24,6 +24,7 @@
 		BA38ACC924C1FF7B00A47813 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACC824C1FF7B00A47813 /* Formatter.swift */; };
 		BA38ACCB24C1FFB900A47813 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACCA24C1FFB900A47813 /* KeyedDecodingContainer.swift */; };
 		BA38ACCD24C201BD00A47813 /* WatchlistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACCC24C201BD00A47813 /* WatchlistStore.swift */; };
+		BA38ACD324C2051800A47813 /* AddSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA38ACD224C2051800A47813 /* AddSymbolButton.swift */; };
 		BA68563824AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563924AAC84E006FF34C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA68563724AAC84E006FF34C /* Keys.plist */; };
 		BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA68563B24AAC8DB006FF34C /* Keys.swift */; };
@@ -78,6 +79,7 @@
 		BA38ACC824C1FF7B00A47813 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		BA38ACCA24C1FFB900A47813 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		BA38ACCC24C201BD00A47813 /* WatchlistStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistStore.swift; sourceTree = "<group>"; };
+		BA38ACD224C2051800A47813 /* AddSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymbolButton.swift; sourceTree = "<group>"; };
 		BA68563724AAC84E006FF34C /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		BA68563B24AAC8DB006FF34C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		BA6F326B24BCBC8C008CD2A3 /* SymbolSearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchStore.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				BA17993F24BFE54E00210B00 /* WatchlistView.swift */,
 				BA17994524BFE64E00210B00 /* WatchlistInteractor.swift */,
 				BA17994224BFE5B400210B00 /* Interactor.swift */,
+				BA38ACD224C2051800A47813 /* AddSymbolButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				BADA459224A810D500B4E8E8 /* SymbolPicker.swift in Sources */,
 				BAD5CED524AAFD53001B2AFD /* RequestServicer.swift in Sources */,
 				BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */,
+				BA38ACD324C2051800A47813 /* AddSymbolButton.swift in Sources */,
 				BADA457524A7F9A100B4E8E8 /* PapierApp.swift in Sources */,
 				BAD49F7E24BF6931009B531C /* FromResult.swift in Sources */,
 				BA17993824BFE13200210B00 /* PriceInformationStore.swift in Sources */,

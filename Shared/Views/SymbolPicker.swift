@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SymbolPicker: View {
-    @Binding public var selection: SearchResult?
-    @Binding public var showSelf: Bool
     @StateObject private var interactor = RealEnvironment.shared.symbolSearchInteractor()
+    @State var onSelected: (SearchResult) -> Void
     
     var body: some View {
         return VStack {
@@ -30,18 +29,11 @@ struct SymbolPicker: View {
             }
         }
     }
-    
-    func onSelected(_ item: SearchResult) {
-        selection = item
-        showSelf = false
-    }
 }
 
 struct SymbolPicker_Previews: PreviewProvider {
-    @State private static var selection: SearchResult?
-    @State private static var showDetail: Bool = true
     
     static var previews: some View {
-        SymbolPicker(selection: $selection, showSelf: $showDetail)
+        SymbolPicker(onSelected: {_ in })
     }
 }
