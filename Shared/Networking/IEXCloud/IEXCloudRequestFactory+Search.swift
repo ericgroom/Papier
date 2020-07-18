@@ -23,16 +23,17 @@ typealias SearchQuery = String
 
 extension IEXCloudRequestFactory {
     func searchSymbols(matching query: SearchQuery) -> Result<Request<[SearchResult]>, RequestConstructionError> {
-        guard let endpoint = "/search/\(query)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return .failure(.unableToPercentEncodeString)
-        }
-        let components = baseComponents(to: endpoint)
-        guard let url = components.url else {
-            return .failure(.unableToCreateURLFromComponents)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return .success(Request(request))
+        baseComponents(to: "/search/\(query)")
+            .flatMap { components in
+                guard let url = components.url else {
+                    return .failure(.unableToCreateURLFromComponents)
+                }
+                return .success(url)
+            }
+            .map { (url: URL) in
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                return Request(request)
+            }
     }
 }

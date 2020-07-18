@@ -44,15 +44,20 @@ class IEXCloudRequestFactory: IEXCloudRequestProducing {
      
      - Parameter endpoint: a string path for the desired endpoint
      */
-    internal func baseComponents(to endpoint: String) -> URLComponents {
+    internal func baseComponents(to endpoint: String) -> Result<URLComponents, RequestConstructionError> {
         let normalizedEndpointPostfix = endpoint.first == "/" ? String(endpoint.dropFirst()) : endpoint
+        
+        guard let encodedEndpoint = normalizedEndpointPostfix
+            .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            return .failure(.unableToPercentEncodeString)
+        }
         
         var components = URLComponents()
         components.scheme = "https"
         components.host = host
-        components.path = basePath + normalizedEndpointPostfix
+        components.path = basePath + encodedEndpoint
         components.queryItems = [authParam]
-        return components
+        return .success(components)
     }
 }
 

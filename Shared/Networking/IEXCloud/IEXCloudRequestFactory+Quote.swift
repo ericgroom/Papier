@@ -41,17 +41,18 @@ extension Quote: Identifiable {
 
 extension IEXCloudRequestFactory {
     func quote(for symbol: Symbol) -> Result<Request<Quote>, RequestConstructionError> {
-        guard let endpoint = "/stock/\(symbol)/quote"
-            .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return .failure(.unableToPercentEncodeString)
-        }
-        let components = baseComponents(to: endpoint)
-        guard let url = components.url else {
-            return .failure(.unableToCreateURLFromComponents)
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return .success(Request(request))
+        baseComponents(to: "/stock/\(symbol)/quote")
+            .flatMap { components in
+                guard let url = components.url else {
+                    return .failure(.unableToCreateURLFromComponents)
+                }
+                return .success(url)
+            }
+            .map { (url: URL) in
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                return Request(request)
+            }
+    }
     }
 }
