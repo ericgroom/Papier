@@ -10,9 +10,6 @@ import Combine
 
 @main
 struct PapierApp: App {
-    @State private var selectedSymbol: SearchResult? = nil
-    @State private var showSearch = false
-    
     init() {
         
     }
@@ -20,20 +17,8 @@ struct PapierApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                Form {
-                    NavigationLink(
-                        "Select Symbol",
-                        destination: SymbolPicker(onSelected: onSelection(of:)),
-                        isActive: $showSearch)
-                    Text("Selected: \(selectedSymbol?.symbol ?? "none")")
-                    WatchlistView()
-                }
+                WatchlistView()
             }
         }
-    }
-    
-    func onSelection(of searchResult: SearchResult) {
-        selectedSymbol = searchResult
-        showSearch.toggle()
     }
 }

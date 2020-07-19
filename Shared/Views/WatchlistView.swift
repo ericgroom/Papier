@@ -26,7 +26,9 @@ struct WatchlistView: View {
                         .bold()
                 }
             }
-        }.navigationBarItems(
+        }
+        .navigationTitle("Watchlist")
+        .navigationBarItems(
             trailing: AddSymbolButton(onSelected: onSymbolSelected)
         )
     }
