@@ -54,5 +54,51 @@ extension IEXCloudRequestFactory {
                 return Request(request)
             }
     }
+    
+    func batch(for symbols: [Symbol], with info: [StockInfoType]) -> ConstructionResult<BatchResponse> {
+        // https://cloud.iexapis.com/stable/stock/aapl/batch?types=quote,news,chart&range=1m&last=10
+        baseComponents(to: "/stock/market/batch")
+            .map { components -> URLComponents in
+                var components = components
+                let symbols = URLQueryItem(name: "symbols", value: symbols.joined(separator: ","))
+                let types = URLQueryItem(name: "types", value: info.map(\.urlParam).joined(separator: ","))
+                components.queryItems?.append(symbols)
+                components.queryItems?.append(types)
+                return components
+            }
+            .flatMap { components in
+                guard let url = components.url else {
+                    return .failure(.unableToCreateURLFromComponents)
+                }
+                return .success(url)
+            }
+            .map { (url: URL) in
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                return Request(request)
+            }
+    }
+}
+
+typealias BatchResponse = [Symbol: BatchTypes]
+
+struct BatchTypes: Decodable {
+    let quote: Quote?
+}
+
+enum StockInfoType {
+    case quote
+    case news
+    case chart
+    
+    var urlParam: String {
+        switch self {
+        case .quote:
+            return "quote"
+        case .news:
+            return "news"
+        case .chart:
+            return "chart"
+        }
     }
 }

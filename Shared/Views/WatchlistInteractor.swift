@@ -21,21 +21,14 @@ class WatchlistInteractor: Interactor {
         self.watchlistStore = watchlistStore
         
         watchlistStore.watchedSymbols.flatMap { symbols in
-            Publishers.MergeMany(
-                symbols.map { priceInformationStore.quote(for: $0) }
-            )
+            priceInformationStore.batchQuotes(for: symbols)
         }
         .print()
         .assertNoFailure()
         .print()
         .receive(on: RunLoop.main)
-        .sink { [weak self] quote in
-            guard let self = self else { return }
-            if let index = self.watched.firstIndex(where: { quote.symbol == $0.symbol }) {
-                self.watched[index] = quote
-            } else {
-                self.watched.append(quote)
-            }
+        .sink { [weak self] quotes in
+            self?.watched = Array(quotes.values)
         }
         .store(in: &bag)
     }

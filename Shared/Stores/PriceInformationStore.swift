@@ -10,6 +10,7 @@ import Combine
 
 protocol PriceInformationStoring {
     func quote(for symbol: Symbol) -> AnyPublisher<Quote, ServiceError>
+    func batchQuotes(for symbols: [Symbol]) -> AnyPublisher<[Symbol: Quote], ServiceError>
 }
 
 class PriceInformationStore: PriceInformationStoring {
@@ -35,6 +36,19 @@ class PriceInformationStore: PriceInformationStoring {
             .flatMap { [self] request in
                 requestServicer.fetch(request: request)
                     .mapError { ServiceError.network($0) }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func batchQuotes(for symbols: [Symbol]) -> AnyPublisher<[Symbol: Quote], ServiceError> {
+        return FromResult(requestFactory.batch(for: symbols, with: [.quote]))
+            .mapError { ServiceError.requestConstruction($0) }
+            .flatMap { [self] request in
+                requestServicer.fetch(request: request)
+                    .mapError { ServiceError.network($0) }
+            }
+            .map { response in
+                response.compactMapValues(\.quote)
             }
             .eraseToAnyPublisher()
     }
