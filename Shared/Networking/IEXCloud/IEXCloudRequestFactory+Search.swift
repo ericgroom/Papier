@@ -22,7 +22,7 @@ extension SearchResult: Identifiable {
 typealias SearchQuery = String
 
 extension IEXCloudRequestFactory {
-    func searchSymbols(matching query: SearchQuery) -> Result<Request<[SearchResult]>, RequestConstructionError> {
+    func searchSymbols(matching query: SearchQuery) -> ConstructionResult<[SearchResult]> {
         baseComponents(to: "/search/\(query)")
             .flatMap { components in
                 guard let url = components.url else {

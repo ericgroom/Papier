@@ -40,7 +40,7 @@ extension Quote: Identifiable {
 }
 
 extension IEXCloudRequestFactory {
-    func quote(for symbol: Symbol) -> Result<Request<Quote>, RequestConstructionError> {
+    func quote(for symbol: Symbol) -> ConstructionResult<Quote> {
         baseComponents(to: "/stock/\(symbol)/quote")
             .flatMap { components in
                 guard let url = components.url else {

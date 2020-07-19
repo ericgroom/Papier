@@ -8,9 +8,11 @@
 import Foundation
 
 protocol IEXCloudRequestProducing {
-    func searchSymbols(matching query: String) -> Result<Request<[SearchResult]>, RequestConstructionError>
-    func quote(for symbol: Symbol) -> Result<Request<Quote>, RequestConstructionError>
+    func searchSymbols(matching query: String) -> ConstructionResult<[SearchResult]>
+    func quote(for symbol: Symbol) -> ConstructionResult<Quote>
 }
+
+typealias ConstructionResult<T: Decodable> = Result<Request<T>, RequestConstructionError>
 
 class IEXCloudRequestFactory: IEXCloudRequestProducing {
     // MARK: - Common
