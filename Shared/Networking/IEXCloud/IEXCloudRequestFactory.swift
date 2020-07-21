@@ -10,7 +10,7 @@ import Foundation
 protocol IEXCloudRequestProducing {
     func searchSymbols(matching query: String) -> ConstructionResult<[SearchResult]>
     func quote(for symbol: Symbol) -> ConstructionResult<Quote>
-    func batch(for symbols: [Symbol], with info: [StockInfoType]) -> ConstructionResult<BatchResponse>
+    func batch(for symbols: Set<Symbol>, with info: [StockInfoType]) -> ConstructionResult<BatchResponse>
 }
 
 typealias ConstructionResult<T: Decodable> = Result<Request<T>, RequestConstructionError>

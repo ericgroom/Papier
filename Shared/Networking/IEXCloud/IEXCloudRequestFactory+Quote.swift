@@ -55,7 +55,7 @@ extension IEXCloudRequestFactory {
             }
     }
     
-    func batch(for symbols: [Symbol], with info: [StockInfoType]) -> ConstructionResult<BatchResponse> {
+    func batch(for symbols: Set<Symbol>, with info: [StockInfoType]) -> ConstructionResult<BatchResponse> {
         // https://cloud.iexapis.com/stable/stock/aapl/batch?types=quote,news,chart&range=1m&last=10
         baseComponents(to: "/stock/market/batch")
             .map { components -> URLComponents in

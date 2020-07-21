@@ -12,23 +12,29 @@ struct WatchlistView: View {
     
     var body: some View {
         List {
-            ForEach(interactor.watched) { quote in
+            ForEach(interactor.watched) { symbol in
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(quote.symbol)
+                        Text(symbol.symbol)
                             .bold()
-                        Text(quote.companyName)
+                        Text(companyName(for: symbol))
+                            .lineLimit(1)
                             .font(.footnote)
                             .foregroundColor(.gray)
                     }
                     Spacer()
-                    Text(format(decimal: quote.latestPrice))
+                    Text(price(for: symbol))
                         .bold()
                 }
+            }.onDelete { deleted in
+                interactor.delete(deleted)
+            }.onMove { (source, destination) in
+                interactor.reorder(from: source, to: destination)
             }
         }
         .navigationTitle("Watchlist")
         .navigationBarItems(
+            leading: EditButton(),
             trailing: AddSymbolButton(onSelected: onSymbolSelected)
         )
     }
@@ -37,8 +43,14 @@ struct WatchlistView: View {
         interactor.watch(symbol: symbol.symbol)
     }
     
-    func format(decimal: Decimal) -> String {
-        return Formatter.currency.string(for: decimal) ?? "<invalid>"
+    func price(for symbol: SymbolInfo) -> String {
+        (interactor.quotes[symbol.symbol]?.latestPrice)
+            .flatMap { Formatter.currency.string(for: $0) }
+            ?? ""
+    }
+    
+    func companyName(for symbol: SymbolInfo) -> String {
+        interactor.quotes[symbol.symbol]?.companyName ?? ""
     }
 }
 

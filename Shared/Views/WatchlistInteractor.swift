@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 class WatchlistInteractor: Interactor {
-    @Published var watched: [Quote] = []
+    @Published var watched: [SymbolInfo] = []
+    @Published var quotes: [Symbol: Quote] = [:]
     
     private var priceInformationStore: PriceInformationStoring
     private var watchlistStore: WatchlistStoring
@@ -20,17 +21,22 @@ class WatchlistInteractor: Interactor {
         self.priceInformationStore = priceInformationStore
         self.watchlistStore = watchlistStore
         
-        watchlistStore.watchedSymbols.flatMap { symbols in
-            priceInformationStore.batchQuotes(for: symbols)
-        }
-        .print()
-        .assertNoFailure()
-        .print()
-        .receive(on: RunLoop.main)
-        .sink { [weak self] quotes in
-            self?.watched = Array(quotes.values)
-        }
-        .store(in: &bag)
+        watchlistStore.watchedSymbols.sink { [weak self] watchedSymbols in
+            self?.watched = watchedSymbols
+        }.store(in: &bag)
+        
+        $watched
+            .map { Set($0.map(\.symbol)) }
+            .removeDuplicates()
+            .flatMap { symbols in
+                priceInformationStore.batchQuotes(for: symbols)
+            }
+            .assertNoFailure()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] quotes in
+                self?.quotes = quotes
+            }
+            .store(in: &bag)
     }
     
     func watch(symbol: Symbol) {
@@ -39,5 +45,13 @@ class WatchlistInteractor: Interactor {
                 
             })
             .store(in: &bag)
+    }
+    
+    func reorder(from source: IndexSet, to destination: Int) {
+        watchlistStore.reorder(from: source, to: destination)
+    }
+    
+    func delete(_ indices: IndexSet) {
+        watchlistStore.delete(indices)
     }
 }

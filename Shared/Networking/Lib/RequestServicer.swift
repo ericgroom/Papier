@@ -14,7 +14,7 @@ protocol RequestServicing {
 }
 
 struct RequestServicer: RequestServicing {
-    private var printJSON = true
+    private var printJSON = false
     
     func service(request: URLRequest) -> URLSession.DataTaskPublisher {
         URLSession.shared.dataTaskPublisher(for: request)
