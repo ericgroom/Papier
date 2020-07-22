@@ -47,6 +47,8 @@
 		BADA459324A810D500B4E8E8 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459124A810D500B4E8E8 /* SymbolPicker.swift */; };
 		BADA459B24A817C100B4E8E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459A24A817C100B4E8E8 /* SearchBar.swift */; };
 		BADA459C24A817C100B4E8E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA459A24A817C100B4E8E8 /* SearchBar.swift */; };
+		BADDE4FE24C691FA00CA6CB6 /* Papier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BADDE4FC24C691FA00CA6CB6 /* Papier.xcdatamodeld */; };
+		BADDE50124C6921B00CA6CB6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADDE50024C6921B00CA6CB6 /* CoreDataService.swift */; };
 		BAF562B924BB7540008E43CC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562B824BB7540008E43CC /* Request.swift */; };
 		BAF562BC24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */; };
 		BAF562BD24BB84C0008E43CC /* SymbolSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */; };
@@ -113,6 +115,8 @@
 		BADA457424A7F9A100B4E8E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BADA459124A810D500B4E8E8 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		BADA459A24A817C100B4E8E8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		BADDE4FD24C691FA00CA6CB6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BADDE50024C6921B00CA6CB6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BAF562B824BB7540008E43CC /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		BAF562BB24BB84C0008E43CC /* SymbolSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +239,7 @@
 				BA68563A24AAC8C9006FF34C /* Keys */,
 				BADA458D24A8108800B4E8E8 /* Views */,
 				BADA458924A7FA1400B4E8E8 /* Networking */,
+				BADDE4FF24C6920300CA6CB6 /* Persistance */,
 				BA024B5B24BC13BE004B6320 /* Environment.swift */,
 				BADA454C24A7F9A000B4E8E8 /* PapierApp.swift */,
 				BADA454E24A7F9A100B4E8E8 /* Assets.xcassets */,
@@ -310,6 +315,15 @@
 				BA38ACD224C2051800A47813 /* AddSymbolButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BADDE4FF24C6920300CA6CB6 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				BADDE4FC24C691FA00CA6CB6 /* Papier.xcdatamodeld */,
+				BADDE50024C6921B00CA6CB6 /* CoreDataService.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,8 +524,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA38ACCD24C201BD00A47813 /* WatchlistStore.swift in Sources */,
+				BADDE4FE24C691FA00CA6CB6 /* Papier.xcdatamodeld in Sources */,
 				BA68563C24AAC8DB006FF34C /* Keys.swift in Sources */,
 				BA38ACC924C1FF7B00A47813 /* Formatter.swift in Sources */,
+				BADDE50124C6921B00CA6CB6 /* CoreDataService.swift in Sources */,
 				BA6F326C24BCBC8C008CD2A3 /* SymbolSearchStore.swift in Sources */,
 				BA17994624BFE64E00210B00 /* WatchlistInteractor.swift in Sources */,
 				BA17993524BFDE0C00210B00 /* IEXCloudRequestFactory+Quote.swift in Sources */,
@@ -990,6 +1006,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BADDE4FC24C691FA00CA6CB6 /* Papier.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BADDE4FD24C691FA00CA6CB6 /* Model.xcdatamodel */,
+			);
+			currentVersion = BADDE4FD24C691FA00CA6CB6 /* Model.xcdatamodel */;
+			path = Papier.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BADA454724A7F9A000B4E8E8 /* Project object */;
 }

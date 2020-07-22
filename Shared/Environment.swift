@@ -10,6 +10,7 @@ import Combine
 
 protocol Environment {
     var requestServicer: RequestServicing { get }
+    var coreDataService: CoreDataService { get }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor
     func watchlistInteractor() -> WatchlistInteractor
@@ -17,6 +18,7 @@ protocol Environment {
 
 class RealEnvironment: Environment {
     let requestServicer: RequestServicing
+    let coreDataService: CoreDataService
     let symbolSearchStore: SymbolSearchStore
     let priceInformationStore: PriceInformationStoring
     let watchlistStore: WatchlistStoring
@@ -33,6 +35,7 @@ class RealEnvironment: Environment {
 
         let iex = IEXCloudRequestFactory(keys: keys.iexcloud, enviornment: .sandbox)
         self.requestServicer = RequestServicer()
+        self.coreDataService = CoreDataService()
         self.symbolSearchStore = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
         self.priceInformationStore = PriceInformationStore(requestServicer: requestServicer, requestFactory: iex)
         self.watchlistStore = WatchlistStore()
