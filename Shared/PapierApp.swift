@@ -20,7 +20,7 @@ struct PapierApp: App {
                 WatchlistView()
             }
             .onAppear {
-                print(RealEnvironment.shared.coreDataService.managedObjectContext)
+                print(RealEnvironment.shared.coreDataService.mainManagedObjectContext)
             }
         }
     }

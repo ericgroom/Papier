@@ -7,17 +7,56 @@
 
 import Foundation
 import CoreData
+import UIKit
+import Combine
 
 class CoreDataService {
     
     private let modelName: String
+    private var bag: Set<AnyCancellable> = Set()
     
     init(modelName: String = "Papier") {
         self.modelName = modelName
+        
+        let resignActive = NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
+        let terminate = NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)
+        
+        Publishers.Merge(resignActive, terminate)
+            .sink { [weak self] _ in
+                self?.save()
+            }.store(in: &bag)
     }
     
-    public private(set) lazy var managedObjectContext: NSManagedObjectContext = {
+    public private(set) lazy var mainManagedObjectContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = privateManagedObjectContext
+        return context
+    }()
+    
+    public func save() {
+        mainManagedObjectContext.performAndWait {
+            if mainManagedObjectContext.hasChanges {
+                do {
+                    try mainManagedObjectContext.save()
+                } catch {
+                    print("Unable to save mainManagedObjectContext \(error)")
+                }
+            }
+        }
+        
+        privateManagedObjectContext.perform { [self] in
+            if privateManagedObjectContext.hasChanges {
+                do {
+                    try privateManagedObjectContext.save()
+                } catch {
+                    print("Unable to save privateManagedObjectContext \(error)")
+                }
+            }
+        }
+    }
+    
+    private lazy var privateManagedObjectContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.persistentStoreCoordinator = persistentStoreCoordinator
         return context
     }()
