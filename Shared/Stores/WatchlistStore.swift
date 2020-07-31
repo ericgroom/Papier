@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol WatchlistStoring {
-    var watchedSymbols: AnyPublisher<[SymbolInfo], Never> { get }
+    var watchedSymbols: AnyPublisher<[WatchedSymbol], Never> { get }
     
     func watch(symbol: Symbol) -> AnyPublisher<Void, Never>
     func reorder(from source: IndexSet, to destination: Int)
@@ -17,14 +17,14 @@ protocol WatchlistStoring {
 }
 
 class WatchlistStore: WatchlistStoring {
-    private var watchlistSubject = CurrentValueSubject<[SymbolInfo], Never>(g("AMD", "AMZN", "GOOGL", "INTL", "VOO"))
-    var watchedSymbols: AnyPublisher<[SymbolInfo], Never> {
+    private var watchlistSubject = CurrentValueSubject<[WatchedSymbol], Never>(g("AMD", "AMZN", "GOOGL", "INTL", "VOO"))
+    var watchedSymbols: AnyPublisher<[WatchedSymbol], Never> {
         watchlistSubject.eraseToAnyPublisher()
     }
     
     func watch(symbol: Symbol) -> AnyPublisher<Void, Never> {
         Future { [self] promise in
-            let info = SymbolInfo(symbol: symbol, order: watchlistSubject.value.count)
+            let info = WatchedSymbol(symbol: symbol, order: watchlistSubject.value.count)
             watchlistSubject.value.append(info)
             promise(.success(()))
         }.eraseToAnyPublisher()
@@ -38,16 +38,16 @@ class WatchlistStore: WatchlistStoring {
         watchlistSubject.value.remove(atOffsets: indices)
     }
     
-    private static func g(_ symbols: String...) -> [SymbolInfo] {
-        symbols.enumerated().map { SymbolInfo(symbol: $0.element, order: $0.offset) }
+    private static func g(_ symbols: String...) -> [WatchedSymbol] {
+        symbols.enumerated().map { WatchedSymbol(symbol: $0.element, order: $0.offset) }
     }
 }
 
-struct SymbolInfo {
+struct WatchedSymbol {
     let symbol: String
     let order: Int
 }
 
-extension SymbolInfo: Identifiable {
+extension WatchedSymbol: Identifiable {
     var id: Symbol { symbol }
 }

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class WatchlistInteractor: Interactor {
-    @Published var watched: [SymbolInfo] = []
+    @Published var watched: [WatchedSymbol] = []
     @Published var quotes: [Symbol: Quote] = [:]
     
     private var priceInformationStore: PriceInformationStoring

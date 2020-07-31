@@ -43,13 +43,13 @@ struct WatchlistView: View {
         interactor.watch(symbol: symbol.symbol)
     }
     
-    func price(for symbol: SymbolInfo) -> String {
+    func price(for symbol: WatchedSymbol) -> String {
         (interactor.quotes[symbol.symbol]?.latestPrice)
             .flatMap { Formatter.currency.string(for: $0) }
             ?? ""
     }
     
-    func companyName(for symbol: SymbolInfo) -> String {
+    func companyName(for symbol: WatchedSymbol) -> String {
         interactor.quotes[symbol.symbol]?.companyName ?? ""
     }
 }
