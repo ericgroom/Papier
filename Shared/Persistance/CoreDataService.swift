@@ -27,74 +27,34 @@ class CoreDataService {
             }.store(in: &bag)
     }
     
-    public private(set) lazy var mainManagedObjectContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.parent = privateManagedObjectContext
-        return context
-    }()
+    public var managedObjectContext: NSManagedObjectContext {
+        persistentContainer.viewContext
+    }
     
     public func save() {
-        mainManagedObjectContext.performAndWait {
-            if mainManagedObjectContext.hasChanges {
-                do {
-                    try mainManagedObjectContext.save()
-                } catch {
-                    print("Unable to save mainManagedObjectContext \(error)")
-                }
-            }
-        }
+        let context = persistentContainer.viewContext
         
-        privateManagedObjectContext.perform { [self] in
-            if privateManagedObjectContext.hasChanges {
-                do {
-                    try privateManagedObjectContext.save()
-                } catch {
-                    print("Unable to save privateManagedObjectContext \(error)")
-                }
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                fatalError("Problem saving context: \(error.localizedDescription)")
             }
         }
     }
     
-    private lazy var privateManagedObjectContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentStoreCoordinator
-        return context
-    }()
-    
-    private lazy var managedObjectModel: NSManagedObjectModel = {
-        // Fetch Model URL
-        guard let modelURL = Bundle.main.url(forResource: self.modelName, withExtension: "momd") else {
-            fatalError("Unable to Find Data Model")
-        }
-
-        // Initialize Managed Object Model
-        guard let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
-            fatalError("Unable to Load Data Model")
-        }
-
-        return managedObjectModel
-    }()
-    
-    private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-        let storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+    private lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: modelName)
         
-        let options = [
-            NSMigratePersistentStoresAutomaticallyOption: true,
-            NSInferMappingModelAutomaticallyOption: true
-        ]
-        
-        do {
-            try storeCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: sqlitePath, options: options)
-        } catch {
-            fatalError("Unable to add persistent store")
+        container.loadPersistentStores { (storeDescription, error) in
+            if let error = error {
+                fatalError("Error loading persistentStores: \(error.localizedDescription)")
+            }
         }
         
-        return storeCoordinator
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        return container
     }()
-    
-    private var sqlitePath: URL? {
-        let fileName = "\(modelName).sqlite"
-        let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        return documentsDir?.appendingPathComponent(fileName)
-    }
 }
