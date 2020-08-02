@@ -9,15 +9,36 @@ import Foundation
 import Combine
 
 protocol RequestServicing {
-    func service(request: URLRequest) -> URLSession.DataTaskPublisher
+    typealias AnyURLSessionPublisher = AnyPublisher<URLSession.DataTaskPublisher.Output, URLSession.DataTaskPublisher.Failure>
+
+    func service(request: URLRequest) -> AnyURLSessionPublisher
     func fetch<T: Decodable>(request: Request<T>) -> AnyPublisher<T, NetworkError>
 }
 
 struct RequestServicer: RequestServicing {
     private var printJSON = false
     
-    func service(request: URLRequest) -> URLSession.DataTaskPublisher {
-        URLSession.shared.dataTaskPublisher(for: request)
+    class Hooks {
+        fileprivate let servicingRequestSubject = PassthroughSubject<URLRequest, Never>()
+        var servicingRequest: AnyPublisher<URLRequest, Never> {
+            servicingRequestSubject.eraseToAnyPublisher()
+        }
+        
+        fileprivate let receivedResponseSubject = PassthroughSubject<URLResponse, Never>()
+        var receivedResponse: AnyPublisher<URLResponse, Never> {
+            receivedResponseSubject.eraseToAnyPublisher()
+        }
+    }
+    
+    public let hooks = Hooks()
+    
+    func service(request: URLRequest) -> AnyURLSessionPublisher {
+        hooks.servicingRequestSubject.send(request)
+        
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .handleEvents(receiveOutput: { (_, response) in hooks.receivedResponseSubject.send(response)
+            })
+            .eraseToAnyPublisher()
     }
     
     func fetch<T: Decodable>(request: Request<T>) -> AnyPublisher<T, NetworkError> {

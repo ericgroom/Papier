@@ -23,6 +23,8 @@ class RealEnvironment: Environment {
     let priceInformationStore: PriceInformationStoring
     let watchlistStore: WatchlistStoring
     
+    private var bag = Set<AnyCancellable>()
+    
     /**
      Would like to eventually use SwiftUI environment, but it's not possible to access outside of SwiftUI Views,
       And you can't even use the value in the initialization of the view
@@ -41,6 +43,10 @@ class RealEnvironment: Environment {
         
         let persistence = WatchlistPeristenceService(managedObjectContext: coreDataService.managedObjectContext)
         self.watchlistStore = WatchlistStore(persistence: persistence)
+        
+        if let concreteServicer = requestServicer as? RequestServicer {
+            subscribeToHooks(on: concreteServicer)
+        }
     }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor {
@@ -49,5 +55,38 @@ class RealEnvironment: Environment {
     
     func watchlistInteractor() -> WatchlistInteractor {
         WatchlistInteractor(priceInformationStore: priceInformationStore, watchlistStore: watchlistStore)
+    }
+    
+    private func subscribeToHooks(on requestServicer: RequestServicer) {
+        
+        requestServicer.hooks.receivedResponse
+            .compactMap { $0 as? HTTPURLResponse }
+            .sink { response in
+                let intHeaders = response.allHeaderFields
+                    .compactMapValues { $0 as? String }
+                    .compactMapValues { Int($0) }
+                let regularMessagesConsumed = intHeaders["iexcloud-messages-used"]
+                let premiumMessagesConsumed = intHeaders["iexcloud-premium-messages-used"]
+                let path = response.url?.path
+                
+                var message: String?
+                if let regular = regularMessagesConsumed {
+                    message = "Consumed \(regular) messages"
+                }
+                if let premium = premiumMessagesConsumed {
+                    if message != nil {
+                        message! += " and \(premium) premium messages"
+                    } else {
+                        message = "Comsumed \(premium) premium messages"
+                    }
+                }
+                if let path = path, message != nil {
+                    message! += " while calling \(path)"
+                }
+                
+                if let message = message {
+                    print(message)
+                }
+            }.store(in: &bag)
     }
 }
