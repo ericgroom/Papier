@@ -41,6 +41,12 @@ class PriceInformationStore: PriceInformationStoring {
     }
     
     func batchQuotes(for symbols: Set<Symbol>) -> AnyPublisher<[Symbol: Quote], ServiceError> {
+        guard !symbols.isEmpty else {
+            return Just([:])
+                .setFailureType(to: ServiceError.self)
+                .eraseToAnyPublisher()
+        }
+        
         return FromResult(requestFactory.batch(for: symbols, with: [.quote]))
             .mapError { ServiceError.requestConstruction($0) }
             .flatMap { [self] request in

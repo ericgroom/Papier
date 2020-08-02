@@ -38,7 +38,9 @@ class RealEnvironment: Environment {
         self.coreDataService = CoreDataService()
         self.symbolSearchStore = SymbolSearchStore(requestServicer: requestServicer, requestFactory: iex)
         self.priceInformationStore = PriceInformationStore(requestServicer: requestServicer, requestFactory: iex)
-        self.watchlistStore = WatchlistStore()
+        
+        let persistence = WatchlistPeristenceService(managedObjectContext: coreDataService.managedObjectContext)
+        self.watchlistStore = WatchlistStore(persistence: persistence)
     }
     
     func symbolSearchInteractor() -> SymbolSearchInteractor {

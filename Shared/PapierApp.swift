@@ -19,9 +19,6 @@ struct PapierApp: App {
             NavigationView {
                 WatchlistView()
             }
-            .onAppear {
-                print(RealEnvironment.shared.coreDataService.mainManagedObjectContext)
-            }
         }
     }
 }

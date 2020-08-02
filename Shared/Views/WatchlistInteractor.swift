@@ -41,10 +41,6 @@ class WatchlistInteractor: Interactor {
     
     func watch(symbol: Symbol) {
         watchlistStore.watch(symbol: symbol)
-            .sink(receiveValue: { _ in
-                
-            })
-            .store(in: &bag)
     }
     
     func reorder(from source: IndexSet, to destination: Int) {
